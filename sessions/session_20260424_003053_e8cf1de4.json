@@ -1,0 +1,177 @@
+{
+  "session_id": "20260424_003053_e8cf1de4",
+  "model": "MiniMax-M2.7",
+  "base_url": "https://api.minimaxi.com/v1",
+  "platform": null,
+  "session_start": "2026-04-24T04:01:37.183843",
+  "last_updated": "2026-04-24T04:01:40.809589",
+  "system_prompt": "You are Hermes Agent, an intelligent AI assistant created by Nous Research. You are helpful, knowledgeable, and direct. You assist users with a wide range of tasks including answering questions, writing and editing code, analyzing information, creative work, and executing actions via your tools. You communicate clearly, admit uncertainty when appropriate, and prioritize being genuinely useful over being verbose unless otherwise directed below. Be targeted and efficient in your exploration and investigations.\n\nYou have persistent memory across sessions. Save durable facts using the memory tool: user preferences, environment details, tool quirks, and stable conventions. Memory is injected into every turn, so keep it compact and focused on facts that will still matter later.\nPrioritize what reduces future user steering — the most valuable memory is one that prevents the user from having to correct or remind you again. User preferences and recurring corrections matter more than procedural task details.\nDo NOT save task progress, session outcomes, completed-work logs, or temporary TODO state to memory; use session_search to recall those from past transcripts. If you've discovered a new way to do something, solved a problem that could be necessary later, save it as a skill with the skill tool.\nWrite memories as declarative facts, not instructions to yourself. 'User prefers concise responses' ✓ — 'Always respond concisely' ✗. 'Project uses pytest with xdist' ✓ — 'Run tests with pytest -n 4' ✗. Imperative phrasing gets re-read as a directive in later sessions and can cause repeated work or override the user's current request. Procedures and workflows belong in skills, not memory. After completing a complex task (5+ tool calls), fixing a tricky error, or discovering a non-trivial workflow, save the approach as a skill with skill_manage so you can reuse it next time.\nWhen using a skill and finding it outdated, incomplete, or wrong, patch it immediately with skill_manage(action='patch') — don't wait to be asked. Skills that aren't maintained become liabilities.\n\n## Skills (mandatory)\nBefore replying, scan the skills below. If a skill matches or is even partially relevant to your task, you MUST load it with skill_view(name) and follow its instructions. Err on the side of loading — it is always better to have context you don't need than to miss critical steps, pitfalls, or established workflows. Skills contain specialized knowledge — API endpoints, tool-specific commands, and proven workflows that outperform general-purpose approaches. Load the skill even if you think you could handle the task with basic tools like web_search or terminal. Skills also encode the user's preferred approach, conventions, and quality standards for tasks like code review, planning, and testing — load them even for tasks you already know how to do, because the skill defines how it should be done here.\nIf a skill has issues, fix it with skill_manage(action='patch').\nAfter difficult/iterative tasks, offer to save as a skill. If a skill you loaded was missing steps, had wrong commands, or needed pitfalls you discovered, update it before finishing.\n\n<available_skills>\n  apple: Apple/macOS-specific skills — iMessage, Reminders, Notes, FindMy, and macOS automation. These skills only load on macOS systems.\n    - apple-notes: Manage Apple Notes via the memo CLI on macOS (create, vie...\n    - apple-reminders: Manage Apple Reminders via remindctl CLI (list, add, comp...\n    - findmy: Track Apple devices and AirTags via FindMy.app on macOS u...\n    - imessage: Send and receive iMessages/SMS via the imsg CLI on macOS.\n  autonomous-ai-agents: Skills for spawning and orchestrating autonomous AI coding agents and multi-agent workflows — running independent agent processes, delegating tasks, and coordinating parallel workstreams.\n    - claude-code: Delegate coding tasks to Claude Code (Anthropic's CLI age...\n    - codex: Delegate coding tasks to OpenAI Codex CLI agent. Use for ...\n    - hermes-agent: Complete guide to using and extending Hermes Agent — CLI ...\n    - opencode: Delegate coding tasks to OpenCode CLI agent for feature i...\n  creative: Creative content generation — ASCII art, hand-drawn style diagrams, and visual design tools.\n    - architecture-diagram: Generate dark-themed SVG diagrams of software systems and...\n    - ascii-art: Generate ASCII art using pyfiglet (571 fonts), cowsay, bo...\n    - ascii-video: Production pipeline for ASCII art video — any format. Con...\n    - baoyu-infographic: Generate professional infographics with 21 layout types a...\n    - excalidraw: Create hand-drawn style diagrams using Excalidraw JSON fo...\n    - ideation: Generate project ideas through creative constraints. Use ...\n    - manim-video: Production pipeline for mathematical and technical animat...\n    - p5js: Production pipeline for interactive and generative visual...\n    - pixel-art: Convert images into retro pixel art with hardware-accurat...\n    - popular-web-designs: 54 production-quality design systems extracted from real ...\n    - songwriting-and-ai-music: Songwriting craft, AI music generation prompts (Suno focu...\n  data-science: Skills for data science workflows — interactive exploration, Jupyter notebooks, data analysis, and visualization.\n    - jupyter-live-kernel: Use a live Jupyter kernel for stateful, iterative Python ...\n  devops:\n    - webhook-subscriptions: Create and manage webhook subscriptions for event-driven ...\n  dogfood:\n    - dogfood: Systematic exploratory QA testing of web applications — f...\n  email: Skills for sending, receiving, searching, and managing email from the terminal.\n    - himalaya: CLI to manage emails via IMAP/SMTP. Use himalaya to list,...\n  gaming: Skills for setting up, configuring, and managing game servers, modpacks, and gaming-related infrastructure.\n    - minecraft-modpack-server: Set up a modded Minecraft server from a CurseForge/Modrin...\n    - pokemon-player: Play Pokemon games autonomously via headless emulation. S...\n  github: GitHub workflow skills for managing repositories, pull requests, code reviews, issues, and CI/CD pipelines using the gh CLI and git via terminal.\n    - codebase-inspection: Inspect and analyze codebases using pygount for LOC count...\n    - github-auth: Set up GitHub authentication for the agent using git (uni...\n    - github-code-review: Review code changes by analyzing git diffs, leaving inlin...\n    - github-issues: Create, manage, triage, and close GitHub issues. Search e...\n    - github-pr-workflow: Full pull request lifecycle — create branches, commit cha...\n    - github-repo-management: Clone, create, fork, configure, and manage GitHub reposit...\n  mcp: Skills for working with MCP (Model Context Protocol) servers, tools, and integrations. Documents the built-in native MCP client — configure servers in config.yaml for automatic tool discovery.\n    - native-mcp: Built-in MCP (Model Context Protocol) client that connect...\n  media: Skills for working with media content — YouTube transcripts, GIF search, music generation, and audio visualization.\n    - gif-search: Search and download GIFs from Tenor using curl. No depend...\n    - heartmula: Set up and run HeartMuLa, the open-source music generatio...\n    - songsee: Generate spectrograms and audio feature visualizations (m...\n    - youtube-content: Fetch YouTube video transcripts and transform them into s...\n  mlops: Knowledge and Tools for Machine Learning Operations - tools and frameworks for training, fine-tuning, deploying, and optimizing ML/AI models\n    - huggingface-hub: Hugging Face Hub CLI (hf) — search, download, and upload ...\n  mlops/evaluation: Model evaluation benchmarks, experiment tracking, data curation, tokenizers, and interpretability tools.\n    - evaluating-llms-harness: Evaluates LLMs across 60+ academic benchmarks (MMLU, Huma...\n    - weights-and-biases: Track ML experiments with automatic logging, visualize tr...\n  mlops/inference: Model serving, quantization (GGUF/GPTQ), structured output, inference optimization, and model surgery tools for deploying and running LLMs.\n    - llama-cpp: Run LLM inference with llama.cpp on CPU, Apple Silicon, A...\n    - obliteratus: Remove refusal behaviors from open-weight LLMs using OBLI...\n    - outlines: Guarantee valid JSON/XML/code structure during generation...\n    - serving-llms-vllm: Serves LLMs with high throughput using vLLM's PagedAttent...\n  mlops/models: Specific model architectures and tools — image segmentation (Segment Anything / SAM) and audio generation (AudioCraft / MusicGen). Additional model skills (CLIP, Stable Diffusion, Whisper, LLaVA) are available as optional skills.\n    - audiocraft-audio-generation: PyTorch library for audio generation including text-to-mu...\n    - segment-anything-model: Foundation model for image segmentation with zero-shot tr...\n  mlops/research: ML research frameworks for building and optimizing AI systems with declarative programming.\n    - dspy: Build complex AI systems with declarative programming, op...\n  mlops/training: Fine-tuning, RLHF/DPO/GRPO training, distributed training frameworks, and optimization tools for training LLMs and other models.\n    - axolotl: Expert guidance for fine-tuning LLMs with Axolotl - YAML ...\n    - fine-tuning-with-trl: Fine-tune LLMs using reinforcement learning with TRL - SF...\n    - unsloth: Expert guidance for fast fine-tuning with Unsloth - 2-5x ...\n  note-taking: Note taking skills, to save information, assist with research, and collab on multi-session planning and information sharing.\n    - obsidian: Read, search, and create notes in the Obsidian vault.\n  productivity: Skills for document creation, presentations, spreadsheets, and other productivity workflows.\n    - google-workspace: Gmail, Calendar, Drive, Contacts, Sheets, and Docs integr...\n    - linear: Manage Linear issues, projects, and teams via the GraphQL...\n    - nano-pdf: Edit PDFs with natural-language instructions using the na...\n    - notion: Notion API for creating and managing pages, databases, an...\n    - ocr-and-documents: Extract text from PDFs and scanned documents. Use web_ext...\n    - powerpoint: Use this skill any time a .pptx file is involved in any w...\n  red-teaming:\n    - godmode: Jailbreak API-served LLMs using G0DM0D3 techniques — Pars...\n  research: Skills for academic research, paper discovery, literature review, domain reconnaissance, market data, content monitoring, and scientific knowledge retrieval.\n    - arxiv: Search and retrieve academic papers from arXiv using thei...\n    - blogwatcher: Monitor blogs and RSS/Atom feeds for updates using the bl...\n    - llm-wiki: Karpathy's LLM Wiki — build and maintain a persistent, in...\n    - polymarket: Query Polymarket prediction market data — search markets,...\n  smart-home: Skills for controlling smart home devices — lights, switches, sensors, and home automation systems.\n    - openhue: Control Philips Hue lights, rooms, and scenes via the Ope...\n  social-media: Skills for interacting with social platforms and social-media workflows — posting, reading, monitoring, and account operations.\n    - xurl: Interact with X/Twitter via xurl, the official X API CLI....\n  software-development:\n    - plan: Plan mode for Hermes — inspect context, write a markdown ...\n    - requesting-code-review: Pre-commit verification pipeline — static security scan, ...\n    - subagent-driven-development: Use when executing implementation plans with independent ...\n    - systematic-debugging: Use when encountering any bug, test failure, or unexpecte...\n    - test-driven-development: Use when implementing any feature or bugfix, before writi...\n    - writing-plans: Use when you have a spec or requirements for a multi-step...\n</available_skills>\n\nOnly proceed without loading a skill if genuinely none are relevant to the task.\n\nConversation started: Friday, April 24, 2026 04:01 AM\nModel: MiniMax-M2.7\nProvider: minimax",
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "memory",
+        "description": "Save durable information to persistent memory that survives across sessions. Memory is injected into future turns, so keep it compact and focused on facts that will still matter later.\n\nWHEN TO SAVE (do this proactively, don't wait to be asked):\n- User corrects you or says 'remember this' / 'don't do that again'\n- User shares a preference, habit, or personal detail (name, role, timezone, coding style)\n- You discover something about the environment (OS, installed tools, project structure)\n- You learn a convention, API quirk, or workflow specific to this user's setup\n- You identify a stable fact that will be useful again in future sessions\n\nPRIORITY: User preferences and corrections > environment facts > procedural knowledge. The most valuable memory prevents the user from having to repeat themselves.\n\nDo NOT save task progress, session outcomes, completed-work logs, or temporary TODO state to memory; use session_search to recall those from past transcripts.\nIf you've discovered a new way to do something, solved a problem that could be necessary later, save it as a skill with the skill tool.\n\nTWO TARGETS:\n- 'user': who the user is -- name, role, preferences, communication style, pet peeves\n- 'memory': your notes -- environment facts, project conventions, tool quirks, lessons learned\n\nACTIONS: add (new entry), replace (update existing -- old_text identifies it), remove (delete -- old_text identifies it).\n\nSKIP: trivial/obvious info, things easily re-discovered, raw data dumps, and temporary task state.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "action": {
+              "type": "string",
+              "enum": [
+                "add",
+                "replace",
+                "remove"
+              ],
+              "description": "The action to perform."
+            },
+            "target": {
+              "type": "string",
+              "enum": [
+                "memory",
+                "user"
+              ],
+              "description": "Which memory store: 'memory' for personal notes, 'user' for user profile."
+            },
+            "content": {
+              "type": "string",
+              "description": "The entry content. Required for 'add' and 'replace'."
+            },
+            "old_text": {
+              "type": "string",
+              "description": "Short unique substring identifying the entry to replace or remove."
+            }
+          },
+          "required": [
+            "action",
+            "target"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "skill_manage",
+        "description": "Manage skills (create, update, delete). Skills are your procedural memory — reusable approaches for recurring task types. New skills go to ~/.hermes/skills/; existing skills can be modified wherever they live.\n\nActions: create (full SKILL.md + optional category), patch (old_string/new_string — preferred for fixes), edit (full SKILL.md rewrite — major overhauls only), delete, write_file, remove_file.\n\nCreate when: complex task succeeded (5+ calls), errors overcome, user-corrected approach worked, non-trivial workflow discovered, or user asks you to remember a procedure.\nUpdate when: instructions stale/wrong, OS-specific failures, missing steps or pitfalls found during use. If you used a skill and hit issues not covered by it, patch it immediately.\n\nAfter difficult/iterative tasks, offer to save as a skill. Skip for simple one-offs. Confirm with user before creating/deleting.\n\nGood skills: trigger conditions, numbered steps with exact commands, pitfalls section, verification steps. Use skill_view() to see format examples.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "action": {
+              "type": "string",
+              "enum": [
+                "create",
+                "patch",
+                "edit",
+                "delete",
+                "write_file",
+                "remove_file"
+              ],
+              "description": "The action to perform."
+            },
+            "name": {
+              "type": "string",
+              "description": "Skill name (lowercase, hyphens/underscores, max 64 chars). Must match an existing skill for patch/edit/delete/write_file/remove_file."
+            },
+            "content": {
+              "type": "string",
+              "description": "Full SKILL.md content (YAML frontmatter + markdown body). Required for 'create' and 'edit'. For 'edit', read the skill first with skill_view() and provide the complete updated text."
+            },
+            "old_string": {
+              "type": "string",
+              "description": "Text to find in the file (required for 'patch'). Must be unique unless replace_all=true. Include enough surrounding context to ensure uniqueness."
+            },
+            "new_string": {
+              "type": "string",
+              "description": "Replacement text (required for 'patch'). Can be empty string to delete the matched text."
+            },
+            "replace_all": {
+              "type": "boolean",
+              "description": "For 'patch': replace all occurrences instead of requiring a unique match (default: false)."
+            },
+            "category": {
+              "type": "string",
+              "description": "Optional category/domain for organizing the skill (e.g., 'devops', 'data-science', 'mlops'). Creates a subdirectory grouping. Only used with 'create'."
+            },
+            "file_path": {
+              "type": "string",
+              "description": "Path to a supporting file within the skill directory. For 'write_file'/'remove_file': required, must be under references/, templates/, scripts/, or assets/. For 'patch': optional, defaults to SKILL.md if omitted."
+            },
+            "file_content": {
+              "type": "string",
+              "description": "Content for the file. Required for 'write_file'."
+            }
+          },
+          "required": [
+            "action",
+            "name"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "skill_view",
+        "description": "Skills allow for loading information about specific tasks and workflows, as well as scripts and templates. Load a skill's full content or access its linked files (references, templates, scripts). First call returns SKILL.md content plus a 'linked_files' dict showing available references/templates/scripts. To access those, call again with file_path parameter.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The skill name (use skills_list to see available skills). For plugin-provided skills, use the qualified form 'plugin:skill' (e.g. 'superpowers:writing-plans')."
+            },
+            "file_path": {
+              "type": "string",
+              "description": "OPTIONAL: Path to a linked file within the skill (e.g., 'references/api.md', 'templates/config.yaml', 'scripts/validate.py'). Omit to get the main SKILL.md content."
+            }
+          },
+          "required": [
+            "name"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "skills_list",
+        "description": "List available skills (name + description). Use skill_view(name) to load full content.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string",
+              "description": "Optional category filter to narrow results"
+            }
+          },
+          "required": []
+        }
+      }
+    }
+  ],
+  "message_count": 5,
+  "messages": [
+    {
+      "role": "user",
+      "content": "你好"
+    },
+    {
+      "role": "user",
+      "content": "哈哈"
+    },
+    {
+      "role": "assistant",
+      "content": "你好！😄 有什么我可以帮你的吗？"
+    },
+    {
+      "role": "user",
+      "content": "[System: This session is about to be automatically reset due to inactivity or a scheduled daily reset. The conversation context will be cleared after this turn.\n\nReview the conversation above and:\n1. Save any important facts, preferences, or decisions to memory (user profile or your notes) that would be useful in future sessions.\n2. If you discovered a reusable workflow or solved a non-trivial problem, consider saving it as a skill.\n3. If nothing is worth saving, that's fine — just skip.\n\nDo NOT respond to the user. Just use the memory and skill_manage tools if needed, then stop.]"
+    },
+    {
+      "role": "assistant",
+      "content": "No memory or skills needed for this brief casual exchange.",
+      "reasoning": "The user said \"你好\" and \"哈哈\" - these are just casual greetings in Chinese. There's nothing substantial in this conversation that needs to be saved to memory or as a skill. The user just said hello and laughed - no preferences, facts, or workflow discoveries to save.\n\nI'll just stop here since there's nothing to save.",
+      "finish_reason": "stop"
+    }
+  ]
+}

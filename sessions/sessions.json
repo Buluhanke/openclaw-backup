@@ -1,0 +1,60 @@
+{
+  "agent:main:weixin:dm:o9cq809dmcoo6iWTUvp2vkPyS0wg@im.wechat": {
+    "session_key": "agent:main:weixin:dm:o9cq809dmcoo6iWTUvp2vkPyS0wg@im.wechat",
+    "session_id": "20260424_003053_e8cf1de4",
+    "created_at": "2026-04-24T00:30:53.126024",
+    "updated_at": "2026-04-24T00:31:05.955464",
+    "display_name": null,
+    "platform": "weixin",
+    "chat_type": "dm",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "total_tokens": 0,
+    "last_prompt_tokens": 12435,
+    "estimated_cost_usd": 0.0,
+    "cost_status": "unknown",
+    "memory_flushed": true,
+    "suspended": false,
+    "origin": {
+      "platform": "weixin",
+      "chat_id": "o9cq809dmcoo6iWTUvp2vkPyS0wg@im.wechat",
+      "chat_name": null,
+      "chat_type": "dm",
+      "user_id": "o9cq809dmcoo6iWTUvp2vkPyS0wg@im.wechat",
+      "user_name": "o9cq809dmcoo6iWTUvp2vkPyS0wg@im.wechat",
+      "thread_id": null,
+      "chat_topic": null
+    }
+  },
+  "agent:main:qqbot:dm:EC16BFF09280BE2186FA33BB7432BCCA": {
+    "session_key": "agent:main:qqbot:dm:EC16BFF09280BE2186FA33BB7432BCCA",
+    "session_id": "20260424_111546_fbdedc",
+    "created_at": "2026-04-24T08:44:01.664996",
+    "updated_at": "2026-04-24T11:18:12.166687",
+    "display_name": null,
+    "platform": "qqbot",
+    "chat_type": "dm",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "total_tokens": 0,
+    "last_prompt_tokens": 12732,
+    "estimated_cost_usd": 0.0,
+    "cost_status": "unknown",
+    "memory_flushed": false,
+    "suspended": false,
+    "origin": {
+      "platform": "qqbot",
+      "chat_id": "EC16BFF09280BE2186FA33BB7432BCCA",
+      "chat_name": null,
+      "chat_type": "dm",
+      "user_id": "EC16BFF09280BE2186FA33BB7432BCCA",
+      "user_name": null,
+      "thread_id": null,
+      "chat_topic": null
+    }
+  }
+}
